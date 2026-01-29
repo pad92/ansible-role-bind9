@@ -24,6 +24,9 @@ bind9_dnssec_validation: "auto"
 # Run bind as a hidden master (i.e. limit queries to our_networks)
 bind9_hidden_master: no
 
+# Listen on IPv6 addresses
+bind9_listen_on_v6: true
+
 # Only notify nameservers from also-notify, not from the zone NS records.
 # Necessary to keep traffic between nameservers in private network.
 bind9_notify_explicit: no

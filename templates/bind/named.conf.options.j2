@@ -5,9 +5,9 @@ options {
 	// to talk to, you may need to fix the firewall to allow multiple
 	// ports to talk.  See http://www.kb.cert.org/vuls/id/800113
 
-	// If your ISP provided one or more IP addresses for stable 
-	// nameservers, you probably want to use them as forwarders.  
-	// Uncomment the following block, and insert the addresses replacing 
+	// If your ISP provided one or more IP addresses for stable
+	// nameservers, you probably want to use them as forwarders.
+	// Uncomment the following block, and insert the addresses replacing
 	// the all-0's placeholder.
 
     forwarders {
@@ -24,7 +24,7 @@ options {
 	dnssec-validation {{ bind9_dnssec_validation }};
 	qname-minimization {{ bind9_qname_minimization }};
 
-	listen-on-v6 { any; };
+	listen-on-v6 { {% if bind9_listen_on_v6|default(true) %}any;{% else %}none;{% endif %} };
 	recursion {{ bind9_recursor|default()|ternary('yes', 'no') }};
 	allow-recursion { {{ bind9_recursor|default()|ternary('our_networks', 'none') }}; };
 
